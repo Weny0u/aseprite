@@ -45,7 +45,7 @@ jobs:
         else
           export enable_ccache=on
         fi
-        curl -L https://github.com/Weny0u/aseprite/blob/main/Skia-Windows-Release-x64.zip --output skia.zip
+        curl -L https://github.com/blueloveTH/aseprite/releases/download/v0.01/skia.zip --output skia.zip
         7z x skia.zip
         cmake -S . -B build -G Ninja \
           -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
@@ -54,9 +54,9 @@ jobs:
           -DENABLE_UI=${{ matrix.enable_ui }} \
           -DENABLE_CCACHE=$enable_ccache
           -DLAF_BACKEND=skia \
-          -DSKIA_DIR=./
-          -DSKIA_LIBRARY_DIR=./out/Release-x64 \
-          -DSKIA_LIBRARY=./out/Release-x64/skia.lib
+          -DSKIA_DIR=./skia \
+          -DSKIA_LIBRARY_DIR=./skia/out/Release-x64 \
+          -DSKIA_LIBRARY=./skia/out/Release-x64/skia.lib
     - name: Compiling
       shell: bash
       run: |
